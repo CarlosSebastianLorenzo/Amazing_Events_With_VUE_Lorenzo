@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/styles/style.css">
+    <link rel="shortcut icon" href="../assets/img/IconAmazingEvents.png" type="image/x-icon">
+    <title>Amazing Events | Upcoming Events</title>
+    <script src="https://kit.fontawesome.com/48e5f9f42e.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav>
+        <div class="logo">
+            <a href="../index.html">
+                <img src="../assets/img/LogoAmazingEvents.png" alt="Amazing Events Logo">
+            </a>
+        </div>
+        <input type="checkbox" class="hamburguer">
+        <i class="fa-solid fa-bars"></i>
+        <i class="fa-solid fa-xmark"></i>
+        <ul>
+            <li>
+                <a href="../index.html">Home</a>
+            </li>
+            <li>
+                <a href="#">Upcoming Events</a>
+            </li>
+            <li>
+                <a href="./pastEvents.html">Past Events</a>
+            </li>
+            <li>
+                <a href="./contact.html">Contact</a>
+            </li>
+            <li>
+                <a href="./stats.html">Stats</a>
+            </li>
+        </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="site">
+            <a href="../index.html">
+                <i class="fa-solid fa-chevron-left"></i>
+            </a>
+            <h1>Upcoming Events</h1>
+            <a href="./pastEvents.html">
+                <i class="fa-solid fa-chevron-right"></i>
+            </a>
+        </div>
+        <div id="app">
+            <form class="formSearch" id="formSearch" action="nothing">
+                <fieldset id="filters">
+                    <template v-if="categories" v-for="category in categories">
+                        <input type="checkbox" v-model="checked" v-bind:id="category" v-bind:value="category">
+                        <label v-bind:for="category">{{category}}
+                        </label>
+                    </template>
+                </fieldset>
+                <fieldset>
+                <input v-model="search" type="search" name="search" id="search" placeholder="Search">
+                <button class="buttonSearch"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </fieldset>
+            </form>
+            <img class="spinner" src="/assets/img/IconAmazingEvents.png" alt="Amazing Events Icon">
+            <div class="cards" id="cards">
+                <template v-if="filteredCards.length > 0" v-for="card of filteredCards">
+                    <section>
+                        <span v-bind:style="{ backgroundImage: 'url(' + card.image + ')' }" class="img"></span>
+                        <h3>{{card.name}}</h3>
+                        <h5>{{card.description}}</h5>
+                        <div class="priceCard">
+                            <p>${{card.price}},00</p>
+                            <a v-bind:href="'./details.html?id='+card._id"><button>See more</button></a>
+                        </div>
+                    </section>
+                </template>
+                <template v-else>
+                    <section>
+                        <span class="img" style='background-image: url("/assets/img/NotFound.gif");'></span>
+                        <h3>Not Result Found 😿</h3>
+                        <h5>Sorry, we couldn't find any results</h5>
+                    </section>
+                </template>
+            </div>
+        {{ filtro }}
+        </div>
+    </main>
+    <footer>
+        <div class="redes">
+        <a href=""><i class="fa-brands fa-instagram"></i></a>
+        <a href=""><i class="fa-brands fa-square-facebook"></i></a>
+        <a href=""><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+        <div class="cohort">
+            <h3>FE06-TN</h3>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="/assets/js/index.js"></script>
+</body>
+</html>
