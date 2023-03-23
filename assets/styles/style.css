@@ -375,6 +375,13 @@ td:first-child, th:first-child{
         color: transparent;
     }
 }
+#pastStatistics>tr>th, #upStatistics>tr>th{
+    cursor: pointer;
+}
+#pastStatistics>tr>th:hover, #upStatistics>tr>th:hover{
+    cursor: pointer;
+    background-color: var(--secondary)
+}
 /*SPINNER*/
 .spinner{
     position: fixed;

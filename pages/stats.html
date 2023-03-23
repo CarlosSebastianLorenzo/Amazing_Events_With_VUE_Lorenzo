@@ -71,9 +71,9 @@
                         <td colspan="3">Upcoming events statistics by category</td>
                     </tr>
                     <tr>
-                        <th>Categories</th>
-                        <th>Revenues</th>
-                        <th>Percentage of attendance</th>
+                        <th v-on:click="orderByCategory(upcEventsByCategory)">Categories {{orderedByCategory}}</th>
+                        <th v-on:click="orderByRevenue(upcEventsByCategory)">Revenues {{orderedByRevenue}}</th>
+                        <th v-on:click="orderByAttendance(upcEventsByCategory)">Percentage of attendance {{orederedByAttendance}}</th>
                     </tr>
                     <tr v-for="event of upcEventsByCategory">
                         <td>{{event.category}}</td>
@@ -86,12 +86,12 @@
                         <td colspan="3">Past Events statistic by category</td>
                     </tr>
                     <tr>
-                        <th>Categories</th>
-                        <th>Revenues</th>
-                        <th>Percentage of attendance</th>
+                        <th v-on:click="orderByCategory(pastEventsByCategory)">Categories {{orderedByCategory}}</th>
+                        <th v-on:click="orderByRevenue(pastEventsByCategory)">Revenues {{orderedByRevenue}}</th>
+                        <th v-on:click="orderByAttendance(pastEventsByCategory)">Percentage of attendance {{orederedByAttendance}}</th>
                     </tr>
                     <tr v-for="event of pastEventsByCategory">
-                        <td>{{event.category}}</td>
+                        <td >{{event.category}}</td>
                         <td>${{event.revenue.toLocaleString()}},00</td>
                         <td>{{(event.attendance*100).toFixed(2)}}%</td>
                     </tr>

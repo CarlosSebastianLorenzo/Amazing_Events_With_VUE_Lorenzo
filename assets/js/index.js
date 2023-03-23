@@ -19,9 +19,12 @@ const app = createApp({
       pastEventsByCategory: [],
       highestAttendance: {},
       lowerAttendance: {},
-      largerCapacity: {}
+      largerCapacity: {},
+      orderedByCategory: "↓",
+      orderedByRevenue: "",
+      orederedByAttendance: ""
     }
-    },created(){
+  },created(){
       fetch(url)
       .then(res => res.json())
       .then(data => {
@@ -42,14 +45,13 @@ const app = createApp({
         const queryString = location.search;
         const params = new URLSearchParams(queryString);
         const id = params.get('id');
-        const $div = document.querySelector(".cardDetails");
         this.detail = this.cards.find(elem => elem._id == id)
         //Page Stats
         //UPCOMING
         this.upcEventsByCategory = this.cards.filter(elem=>{if(elem.estimate){return elem}})
         .map(elem =>
           elem = {category: elem.category,
-            revenue: elem.price*elem.capacity,
+            revenue: elem.price*elem.estimate,
             attendance: elem.estimate/elem.capacity
           }
         ).reduce((acc, elem) =>{
@@ -66,7 +68,7 @@ const app = createApp({
         this.pastEventsByCategory = this.cards.filter(elem=>{if(elem.assistance){return elem}})
         .map(elem =>
           elem = {category: elem.category,
-            revenue: elem.price*elem.capacity,
+            revenue: elem.price*elem.assistance,
             attendance: elem.assistance/elem.capacity
           }
         ).reduce((acc, elem) =>{
@@ -116,7 +118,41 @@ const app = createApp({
           }
         },1800);
       });
-    },computed:{
+  },methods:{
+    orderByCategory(array){
+      if(this.orderedByCategory == "↓" || this.orderedByCategory == ""){
+        this.orderedByCategory = "↑";
+        array.sort((a,b)=> a.category > b.category ? -1 : a.category === b.category ? 0 : 1)
+      } else {
+        this.orderedByCategory = "↓";
+        array.sort((a,b)=> a.category < b.category ? -1 : a.category === b.category ? 0 : 1)
+      }
+      this.orderedByRevenue = "";
+      this.orederedByAttendance = "";
+    },
+    orderByRevenue(array){
+      if(this.orderedByRevenue == "↓" || this.orderedByRevenue == ""){
+        this.orderedByRevenue = "↑";
+        array.sort((a,b)=> a.revenue > b.revenue ? -1 : a.revenue === b.revenue ? 0 : 1)
+      } else {
+        this.orderedByRevenue = "↓";
+        array.sort((a,b)=> a.revenue < b.revenue ? -1 : a.revenue === b.revenue ? 0 : 1)
+      }
+      this.orderedByCategory = "";
+      this.orederedByAttendance = "";
+    },
+    orderByAttendance(array){
+      if(this.orederedByAttendance == "↓" || this.orederedByAttendance == ""){
+        this.orederedByAttendance = "↑";
+        array.sort((a,b)=> a.attendance > b.attendance ? -1 : a.attendance === b.attendance ? 0 : 1)
+      } else {
+        this.orederedByAttendance = "↓";
+        array.sort((a,b)=> a.attendance < b.attendance ? -1 : a.attendance === b.attendance ? 0 : 1)
+      }
+      this.orderedByCategory = "";
+      this.orderedByRevenue = "";
+    }
+  },computed:{
       filtro(){
         this.filteredCards = this.cards.filter(elem =>
           (this.checked.includes(elem.category) || this.checked.length === 0)
@@ -127,3 +163,5 @@ const app = createApp({
   })
   
   app.mount('#app')
+
+ // this.misproyectos.sort((a: Proyectos, b: Proyectos) => a.id > b.id ? -1 : a.id === b.id ? 0 : 1);
