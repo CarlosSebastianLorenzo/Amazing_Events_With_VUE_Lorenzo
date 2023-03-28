@@ -1,6 +1,7 @@
 const { createApp } = Vue
 
-const url = "../assets/js/amazing.json"
+// const url = "../assets/js/amazing.json"
+const url = "https://private-fb19df-amazingevents.apiary-mock.com/json"
 
 if(document.querySelector(".cards")){
   document.querySelector(".cards").style.display = "none"
