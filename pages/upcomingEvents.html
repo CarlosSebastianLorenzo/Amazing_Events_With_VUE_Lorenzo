@@ -63,7 +63,7 @@
                 <button class="buttonSearch"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </fieldset>
             </form>
-            <img class="spinner" src="/assets/img/IconAmazingEvents.png" alt="Amazing Events Icon">
+            <img class="spinner" src="../assets/img/IconAmazingEvents.png" alt="Amazing Events Icon">
             <div class="cards" id="cards">
                 <template v-if="filteredCards.length > 0" v-for="card of filteredCards">
                     <section>
@@ -78,7 +78,7 @@
                 </template>
                 <template v-else>
                     <section>
-                        <span class="img" style='background-image: url("/assets/img/NotFound.gif");'></span>
+                        <span class="img" style='background-image: url("../assets/img/NotFound.gif");'></span>
                         <h3>Not Result Found 😿</h3>
                         <h5>Sorry, we couldn't find any results</h5>
                     </section>
@@ -98,6 +98,6 @@
         </div>
     </footer>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="/assets/js/index.js"></script>
+    <script src="../assets/js/index.js"></script>
 </body>
 </html>
